@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="PPTexEditor.TableView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PPTexEditor"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:PPTexEditor.Helpers"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:RowCellToStyleConverter x:Name="RCTSCon" />
+        <DataTemplate x:Key="GridCell">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" MinHeight="20"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Header" Grid.Row="0" Visibility="{Binding id, Converter={StaticResource RCTSCon}}"/>
+                <TextBox MinWidth="150" Grid.Row="1" Width="auto" HorizontalAlignment="Stretch" Text="{Binding value, Mode=TwoWay}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <GridView x:Name="Table" Loaded="GridView_Loaded" ItemTemplate="{StaticResource GridCell}" SelectionMode="Multiple" IsMultiSelectCheckBoxEnabled="True">
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VariableSizedWrapGrid Background="Wheat" MaximumRowsOrColumns="8" Orientation="Horizontal"  ItemHeight="60" ItemWidth="{Binding width}">
+
+                </VariableSizedWrapGrid>
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+    </GridView>
+</UserControl>

@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="PPTexEditor.CalcTablePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PPTexEditor"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer ZoomMode="Disabled">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="600" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <local:TableView x:Name="theTable" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Description" />
+                    <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="X row" />
+                    <TextBox x:Name="x" Grid.Row="3" Grid.Column="1" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Y row" />
+                    <TextBox x:Name="y" Grid.Row="4" Grid.Column="1" />
+                    <TextBox x:Name="Title" Grid.Row="5" Grid.ColumnSpan="2" PlaceholderText="Title"/>
+                    <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Add" Click="Button_Click_2"/>
+                    <ListView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Figures}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding title}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding xrow}" />
+                                    <TextBlock Grid.Column="2" Text="{Binding yrow}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                    </ListView>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Button x:Name="button" Grid.Row="1" Content="Abbort" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,0" Click="button_Click"/>
+        <Button Grid.Row="1" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="Button_Click_1" />
+    </Grid>
+</Page>
